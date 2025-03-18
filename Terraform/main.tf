@@ -127,6 +127,13 @@ resource "azurerm_kubernetes_cluster" "aks" {
   }
 }
 
+# Asignación de los permisos
+resource "azurerm_role_assignment" "acr_owner" {
+  principal_id          = azurerm_kubernetes_cluster.aks.identity[0].principal_id
+  role_definition_name  = "Owner"  # Asigno el rol con los permisos completos
+  scope                  = azurerm_container_registry.acr.id
+}
+
 # Configuración del grupo de seguridad de red (NSG) para habilitar SSH
 resource "azurerm_network_security_group" "ansg" {
   name                = "ansg-test"

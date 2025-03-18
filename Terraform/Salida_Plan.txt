@@ -232,6 +232,19 @@ Terraform will perform the following actions:
       + name     = "davidrgn"
     }
 
+  # azurerm_role_assignment.acr_owner will be created
+  + resource "azurerm_role_assignment" "acr_owner" {
+      + condition_version                = (known after apply)
+      + id                               = (known after apply)
+      + name                             = (known after apply)
+      + principal_id                     = (known after apply)
+      + principal_type                   = (known after apply)
+      + role_definition_id               = (known after apply)
+      + role_definition_name             = "Owner"
+      + scope                            = (known after apply)
+      + skip_service_principal_aad_check = (known after apply)
+    }
+
   # azurerm_subnet.asubnet will be created
   + resource "azurerm_subnet" "asubnet" {
       + address_prefixes                              = [
@@ -261,7 +274,7 @@ Terraform will perform the following actions:
       + subnet                         = (known after apply)
     }
 
-Plan: 10 to add, 0 to change, 0 to destroy.
+Plan: 11 to add, 0 to change, 0 to destroy.
 
 Changes to Outputs:
   + acr_name  = "davidacr"
