@@ -1,0 +1,35 @@
+# Ignorar archivos de Terraform
+*.tfstate
+*.tfstate.*
+*.backup
+*.tfvars
+.terraform/
+*.log
+.terraform.lock.hcl
+
+# Ignorar archivos de Ansible
+*.retry
+*.vagrant/
+*.ansible.cfg
+*.inventory
+*.vault
+#*.yml
+#*.yaml
+
+# Ignorar archivos de configuración local
+*.local
+
+# Ignorar configuraciones de editor de código
+.vscode/
+.idea/
+
+# Ignorar archivos de entorno virtual (si los usas)
+.venv/
+env/
+venv/
+
+# Ignorar ficheros de log
+*.log
+
+# Ignorar ficheros de txt
+*.texto
