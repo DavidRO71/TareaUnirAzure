@@ -38,5 +38,5 @@ myenv
 .ssh
 {chang*
 
-acr-secret.yaml
-variables.yml
+Ansible/acr-secret.yaml
+Ansible/variables.yml
