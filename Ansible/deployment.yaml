@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mi-aplicacion
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mi-aplicacion
+  template:
+    metadata:
+      labels:
+        app: mi-aplicacion
+    spec:
+      containers:
+        - name: redis
+          image: davidacr.azurecr.io/redis:casopractico2
+          ports:
+            - containerPort: 6379
+        - name: azure-vote-front
+          image: davidacr.azurecr.io/azure-vote-front:casopractico2
+          ports:
+            - containerPort: 80
+      imagePullSecrets:
+        - name: acr-secret

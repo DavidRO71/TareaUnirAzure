@@ -121,7 +121,7 @@ Terraform will perform the following actions:
       + vm_agent_platform_updates_enabled                      = false
 
       + admin_ssh_key {
-          + public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDCo8zxBGA2DQMo4CPKxu5b4DgvTpMc28hLQwiOWoGVag+iUcV+6/33dh1Cry7rvM8S2JPH88gOl2Nb7TpVDZtR/WNz9UsIb1n8vM8JpCB+yaI4q2+CTxqbmWjFFeWa5q0evg97VKnZI5kirdDem0y+Jgmm/+8zo2nb7YE6vTP9SU9Wzzkz9VBZHsG+7rnAvaw6/bzdG3A5O1Al1lTjyCJ3p3xTtvdxwcgLHpxhuV/7/VF2NHhV6WswbI7txi6F99dRMLjSmcY9g7fHI3qNWnlrRKctkWdH1/mQphhEzf+xnlwoLgNc9/toiT+3472NFeSSG/tdaNZUp16e/wHOEMKBJmeAvijpYkk/WFTxTh0i7RdPUc9rredutOU4DrMkxWl+fWAxHOosJonAF9IObBK+2e2aQ6AB/HX9j3lRH5qF1ig5+iUZB4oz1Krr3imVblHIVDzhLV8MT1T2gw+dblVJMH6diAUxwx9teeEiM0dMStY1IYWZXU+8dQttLMiremcAvW/Qs7nbfxt1S5NTraS+l2Zo09ssmVZVEbSXFjrweivgzLkqO76+2AbyeEGuq8azL0aDbnEJyKOySenUVYkpnoXcdQF0LPQSFHabtwH5qbsX+eKnsxlZZ/m6vydz6Kw2gUhLCSp0zyUy5GsK9+VXUB1ZpIlloU0nl9oXoqpAHw== david.ramon578@comunidadunir.net"
+          + public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCsVguYOG6nM6y/JzoJVS+ijwqsyWgbz5XdGo46A3jzUU86Z/stlpZpSczdORrX7ovyF/CZfV9Kw/EFN8hMotPOq7uEDMmyHOrTsP8gOCrejV5iuVeRfTe3h8A7m6N8co5A+XZjRBi6U+ohQ/SyO1vpNteJy660SSFC1MngM6mslzA9bqi0wKiZTg+YYTbLihyqene6lrM8MPBmYPl4Sp4cnGL/2a7EC/Cc+JJl+aJ87swyne6OK5mS3B/v4T875YHp1OmqM05e87SLzD2OjrXK9Moep7vGRWOQeg8qTfkvPFlPgVszOqBBCZbh5HUisDB3CNk3OYFrMXyZt4mGr0jq77FgevS6X1M/CL441uTeEaDahBZn7BfzMghACiIEOQynHWtt+xrkYWpz0/Pt5lUBTAtqT0GwY51WI81/EJW3nFmia0lrgXXSmD1pwqMe5MNIwGZnGU0grHyBKnghxAvhKOPlkDef2IKjqVuaRRJzAm+EKAYmf1GmhSLaV/JODATsI8DbLbU+qkF+4+a/ID2yy3TP/xczJO6HEyopdANymcHi8uUZKOBEpgM8giXIOzSR6GbHOqx97an/XABhdh8KYhTwy6Io6ZN99SUV768xeKGyMQLsGiY7c/cLmG1w0gUTrty37cxD/VgrYeglcx4SVxTJNhcferCcwfdPPxIKow=="
           + username   = "ubuntuadmin"
         }
 
@@ -135,9 +135,9 @@ Terraform will perform the following actions:
         }
 
       + source_image_reference {
-          + offer     = "UbuntuServer"
+          + offer     = "0001-com-ubuntu-server-jammy"
           + publisher = "Canonical"
-          + sku       = "18.04-LTS"
+          + sku       = "22_04-lts"
           + version   = "latest"
         }
 
@@ -171,13 +171,6 @@ Terraform will perform the following actions:
         }
     }
 
-  # azurerm_network_interface_security_group_association.nsg_association will be created
-  + resource "azurerm_network_interface_security_group_association" "nsg_association" {
-      + id                        = (known after apply)
-      + network_interface_id      = (known after apply)
-      + network_security_group_id = (known after apply)
-    }
-
   # azurerm_network_security_group.ansg will be created
   + resource "azurerm_network_security_group" "ansg" {
       + id                  = (known after apply)
@@ -195,6 +188,24 @@ Terraform will perform the following actions:
               + direction                                  = "Inbound"
               + name                                       = "AllowSSH"
               + priority                                   = 1000
+              + protocol                                   = "Tcp"
+              + source_address_prefix                      = "*"
+              + source_address_prefixes                    = []
+              + source_application_security_group_ids      = []
+              + source_port_range                          = "*"
+              + source_port_ranges                         = []
+                # (1 unchanged attribute hidden)
+            },
+          + {
+              + access                                     = "Allow"
+              + destination_address_prefix                 = "*"
+              + destination_address_prefixes               = []
+              + destination_application_security_group_ids = []
+              + destination_port_range                     = "80"
+              + destination_port_ranges                    = []
+              + direction                                  = "Inbound"
+              + name                                       = "AllowTCP"
+              + priority                                   = 1001
               + protocol                                   = "Tcp"
               + source_address_prefix                      = "*"
               + source_address_prefixes                    = []
@@ -274,11 +285,10 @@ Terraform will perform the following actions:
       + subnet                         = (known after apply)
     }
 
-Plan: 11 to add, 0 to change, 0 to destroy.
+Plan: 10 to add, 0 to change, 0 to destroy.
 
 Changes to Outputs:
-  + acr_name  = "davidacr"
-  + public_ip = (known after apply)
+  ~ public_ip = "68.221.131.19" -> (known after apply)
 
 Do you want to perform these actions?
   Terraform will perform the actions described above.
@@ -290,29 +300,25 @@ azurerm_resource_group.arg: Creating...
 azurerm_container_registry.acr: Creating...
 azurerm_resource_group.arg: Still creating... [10s elapsed]
 azurerm_container_registry.acr: Still creating... [10s elapsed]
-azurerm_resource_group.arg: Creation complete after 13s [id=/subscriptions/d3535dc1-cdc5-4932-abad-4cf8d2ad675a/resourceGroups/davidrgn]
+azurerm_resource_group.arg: Creation complete after 12s [id=/subscriptions/d3535dc1-cdc5-4932-abad-4cf8d2ad675a/resourceGroups/davidrgn]
 azurerm_virtual_network.avnet: Creating...
-azurerm_network_security_group.ansg: Creating...
 azurerm_public_ip.apublic_ip: Creating...
+azurerm_network_security_group.ansg: Creating...
 azurerm_kubernetes_cluster.aks: Creating...
-azurerm_public_ip.apublic_ip: Creation complete after 4s [id=/subscriptions/d3535dc1-cdc5-4932-abad-4cf8d2ad675a/resourceGroups/davidrgn/providers/Microsoft.Network/publicIPAddresses/miIPPublic]
+azurerm_public_ip.apublic_ip: Creation complete after 3s [id=/subscriptions/d3535dc1-cdc5-4932-abad-4cf8d2ad675a/resourceGroups/davidrgn/providers/Microsoft.Network/publicIPAddresses/miIPPublic]
 azurerm_network_security_group.ansg: Creation complete after 4s [id=/subscriptions/d3535dc1-cdc5-4932-abad-4cf8d2ad675a/resourceGroups/davidrgn/providers/Microsoft.Network/networkSecurityGroups/ansg-test]
-azurerm_virtual_network.avnet: Creation complete after 6s [id=/subscriptions/d3535dc1-cdc5-4932-abad-4cf8d2ad675a/resourceGroups/davidrgn/providers/Microsoft.Network/virtualNetworks/miAvnet]
+azurerm_virtual_network.avnet: Creation complete after 5s [id=/subscriptions/d3535dc1-cdc5-4932-abad-4cf8d2ad675a/resourceGroups/davidrgn/providers/Microsoft.Network/virtualNetworks/miAvnet]
 azurerm_subnet.asubnet: Creating...
-azurerm_container_registry.acr: Still creating... [20s elapsed]
+azurerm_container_registry.acr: Creation complete after 17s [id=/subscriptions/d3535dc1-cdc5-4932-abad-4cf8d2ad675a/resourceGroups/davidrgn/providers/Microsoft.ContainerRegistry/registries/davidacr]
 azurerm_kubernetes_cluster.aks: Still creating... [10s elapsed]
 azurerm_subnet.asubnet: Creation complete after 6s [id=/subscriptions/d3535dc1-cdc5-4932-abad-4cf8d2ad675a/resourceGroups/davidrgn/providers/Microsoft.Network/virtualNetworks/miAvnet/subnets/miAsubnet]
 azurerm_network_interface.anic: Creating...
-azurerm_container_registry.acr: Creation complete after 26s [id=/subscriptions/d3535dc1-cdc5-4932-abad-4cf8d2ad675a/resourceGroups/davidrgn/providers/Microsoft.ContainerRegistry/registries/davidacr]
 azurerm_kubernetes_cluster.aks: Still creating... [20s elapsed]
 azurerm_network_interface.anic: Still creating... [10s elapsed]
 azurerm_network_interface.anic: Creation complete after 13s [id=/subscriptions/d3535dc1-cdc5-4932-abad-4cf8d2ad675a/resourceGroups/davidrgn/providers/Microsoft.Network/networkInterfaces/anic-ubuntu]
-azurerm_network_interface_security_group_association.nsg_association: Creating...
 azurerm_linux_virtual_machine.avml: Creating...
 azurerm_kubernetes_cluster.aks: Still creating... [30s elapsed]
-azurerm_network_interface_security_group_association.nsg_association: Still creating... [10s elapsed]
 azurerm_linux_virtual_machine.avml: Still creating... [10s elapsed]
-azurerm_network_interface_security_group_association.nsg_association: Creation complete after 12s [id=/subscriptions/d3535dc1-cdc5-4932-abad-4cf8d2ad675a/resourceGroups/davidrgn/providers/Microsoft.Network/networkInterfaces/anic-ubuntu|/subscriptions/d3535dc1-cdc5-4932-abad-4cf8d2ad675a/resourceGroups/davidrgn/providers/Microsoft.Network/networkSecurityGroups/ansg-test]
 azurerm_kubernetes_cluster.aks: Still creating... [40s elapsed]
 azurerm_linux_virtual_machine.avml: Still creating... [20s elapsed]
 azurerm_kubernetes_cluster.aks: Still creating... [50s elapsed]
@@ -320,7 +326,6 @@ azurerm_linux_virtual_machine.avml: Still creating... [30s elapsed]
 azurerm_kubernetes_cluster.aks: Still creating... [1m0s elapsed]
 azurerm_linux_virtual_machine.avml: Still creating... [40s elapsed]
 azurerm_kubernetes_cluster.aks: Still creating... [1m10s elapsed]
-azurerm_linux_virtual_machine.avml: Still creating... [50s elapsed]
 azurerm_linux_virtual_machine.avml: Creation complete after 50s [id=/subscriptions/d3535dc1-cdc5-4932-abad-4cf8d2ad675a/resourceGroups/davidrgn/providers/Microsoft.Compute/virtualMachines/avml-ubuntu]
 azurerm_kubernetes_cluster.aks: Still creating... [1m20s elapsed]
 azurerm_kubernetes_cluster.aks: Still creating... [1m30s elapsed]
@@ -335,19 +340,19 @@ azurerm_kubernetes_cluster.aks: Still creating... [2m50s elapsed]
 azurerm_kubernetes_cluster.aks: Still creating... [3m0s elapsed]
 azurerm_kubernetes_cluster.aks: Still creating... [3m10s elapsed]
 azurerm_kubernetes_cluster.aks: Still creating... [3m20s elapsed]
-azurerm_kubernetes_cluster.aks: Still creating... [3m30s elapsed]
-azurerm_kubernetes_cluster.aks: Creation complete after 3m39s [id=/subscriptions/d3535dc1-cdc5-4932-abad-4cf8d2ad675a/resourceGroups/davidrgn/providers/Microsoft.ContainerService/managedClusters/miAKS]
+azurerm_kubernetes_cluster.aks: Creation complete after 3m26s [id=/subscriptions/d3535dc1-cdc5-4932-abad-4cf8d2ad675a/resourceGroups/davidrgn/providers/Microsoft.ContainerService/managedClusters/miAKS]
 azurerm_role_assignment.acr_owner: Creating...
 azurerm_role_assignment.acr_owner: Still creating... [10s elapsed]
 azurerm_role_assignment.acr_owner: Still creating... [20s elapsed]
-azurerm_role_assignment.acr_owner: Creation complete after 24s [id=/subscriptions/d3535dc1-cdc5-4932-abad-4cf8d2ad675a/resourceGroups/davidrgn/providers/Microsoft.ContainerRegistry/registries/davidacr/providers/Microsoft.Authorization/roleAssignments/9c1e3257-0e13-92ea-3b4c-ee456d3c9893]
+azurerm_role_assignment.acr_owner: Creation complete after 26s [id=/subscriptions/d3535dc1-cdc5-4932-abad-4cf8d2ad675a/resourceGroups/davidrgn/providers/Microsoft.ContainerRegistry/registries/davidacr/providers/Microsoft.Authorization/roleAssignments/a3264779-6b9b-5999-8709-fe62150ca211]
 
-Apply complete! Resources: 11 added, 0 changed, 0 destroyed.
+Apply complete! Resources: 10 added, 0 changed, 0 destroyed.
 
 Outputs:
 
 acr_name = "davidacr"
-public_ip = "68.221.132.111"  
+aks_name = "miAKS"
+public_ip = "68.221.196.2"
 
 # -------------------------------------------------------------------------
 # Nota: la IP va cambiando cada vez que ejecuto el comando Terraform apply

@@ -1,0 +1,105 @@
+---
+- name: Desplegar Redis desde ACR en Azure Kubernetes Service (AKS)
+  hosts: miHost
+  gather_facts: no
+  vars_files:
+    - variables.yml
+
+  tasks:
+    - name: Obtener credenciales de AKS
+      azure.azcollection.azure_rm_aks:
+        resource_group: "{{ aks_resource_group }}"
+        name: "{{ aks_cluster_name }}"
+        dns_prefix: "{{ dns_prefix }}"
+        agent_pool_profiles:
+          - name: "default"  # Nombre del pool de nodos
+            count: 1          # Número de nodos
+            vm_size: "Standard_B2s"  # Tamaño de las máquinas virtuales
+            os_disk_size_gb: 128     # Tamaño del disco en GB
+            orchestrator_version: "1.30.9"  # Versión del orquestador
+        state: present  # Asegura que el clúster esté presente
+      register: aks_credentials
+      delegate_to: localhost
+
+    - name: Configurar kubectl para AKS
+      command: >
+        az aks get-credentials --resource-group {{ aks_resource_group }} --name {{ aks_cluster_name }}
+      when: aks_credentials.changed
+
+    - name: Autenticarse en ACR
+      containers.podman.podman_login:
+        registry: "{{ mi_usuario }}"
+        username: "{{ mi_acr }}"
+        password: "{{ mi_contrasenya }}"
+      register: podman_login
+      failed_when: podman_login.failed
+
+    - name: Crear archivo de despliegue de Redis en AKS
+      copy:
+        dest: /tmp/redis-deployment.yaml
+        content: |
+          apiVersion: apps/v1
+          kind: Deployment
+          metadata:
+            name: redis
+            namespace: "{{ namespace }}"
+          spec:
+            replicas: 1
+            selector:
+              matchLabels:
+                app: redis
+            template:
+              metadata:
+                labels:
+                  app: redis
+              spec:
+                containers:
+                  - name: redis
+                    image: "{{ acr_name }}.azurecr.io/{{ redis_image_name }}:{{ redis_version }}"
+                    ports:
+                      - containerPort: 6379
+                    resources:
+                      limits:
+                        memory: "512Mi"
+                        cpu: "500m"
+                      requests:
+                        memory: "256Mi"
+                        cpu: "250m"
+
+    - name: Crear archivo de servicio de Redis en AKS
+      copy:
+        dest: /tmp/redis-service.yaml
+        content: |
+          apiVersion: v1
+          kind: Service
+          metadata:
+            name: redis
+            namespace: "{{ namespace }}"
+          spec:
+            selector:
+              app: redis
+            ports:
+              - protocol: TCP
+                port: 6379
+                targetPort: 6379
+            type: ClusterIP
+
+    - name: Desplegar Redis en AKS
+      kubernetes.core.k8s:
+        state: present
+        definition: "/tmp/redis-deployment.yaml"
+
+    - name: Crear servicio de Redis en AKS
+      kubernetes.core.k8s:
+        state: present
+        definition: "/tmp/redis-service.yaml"
+
+    - name: Verificar que Redis está corriendo en AKS
+      kubernetes.core.k8s_info:
+        kind: Pod
+        namespace: "{{ namespace }}"
+      register: redis_pods
+
+    - name: Mostrar el estado de los pods
+      debug:
+        msg: "{{ redis_pods }}"

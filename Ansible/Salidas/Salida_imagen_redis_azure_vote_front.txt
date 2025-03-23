@@ -1,0 +1,32 @@
+Ejecuto en el cmd => ansible-playbook -i inventory.ini imagen_redis_azure_vote_front.yml
+
+Copio toda la salida de mi consola a continuación:
+
+ansible-playbook -i inventory.ini imagen_redis_azure_vote_front_playbook.yml
+[WARNING]: Found variable using reserved name: namespace
+
+PLAY [Redis, Nginx y Azure_Vote_Front] *******************************************************************************************************************************
+
+TASK [Gathering Facts] ***********************************************************************************************************************************************
+ok: [68.221.196.2]
+
+TASK [Iniciar sesión en ACR con Podman] ******************************************************************************************************************************
+changed: [68.221.196.2]
+
+TASK [Descargar imágenes desde Docker Hub (repositorio público)] *****************************************************************************************************
+changed: [68.221.196.2] => (item={'name': 'docker.io/nginx', 'tag': 'latest'})
+changed: [68.221.196.2] => (item={'name': 'docker.io/library/redis', 'tag': 'latest'})
+changed: [68.221.196.2] => (item={'name': 'docker.io/freelancer08/azure-vote-front', 'tag': 'latest'})
+
+TASK [Etiquetar imágenes descargadas para ACR] ***********************************************************************************************************************
+changed: [68.221.196.2] => (item={'name': 'nginx'})
+changed: [68.221.196.2] => (item={'name': 'redis'})
+changed: [68.221.196.2] => (item={'name': 'azure-vote-front'})
+
+TASK [Subir imágenes a ACR] ******************************************************************************************************************************************
+changed: [68.221.196.2] => (item={'name': 'nginx'})
+changed: [68.221.196.2] => (item={'name': 'redis'})
+changed: [68.221.196.2] => (item={'name': 'azure-vote-front'})
+
+PLAY RECAP ***********************************************************************************************************************************************************
+68.221.196.2               : ok=5    changed=4    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0

@@ -2,6 +2,91 @@ Ejecuto en el cmd => terraform plan
 
 Copio toda la salida de mi consola a continuación:
 
+azurerm_resource_group.arg: Refreshing state... [id=/subscriptions/d3535dc1-cdc5-4932-abad-4cf8d2ad675a/resourceGroups/davidrgn]
+azurerm_container_registry.acr: Refreshing state... [id=/subscriptions/d3535dc1-cdc5-4932-abad-4cf8d2ad675a/resourceGroups/davidrgn/providers/Microsoft.ContainerRegistry/registries/davidacr]
+azurerm_network_interface_security_group_association.nsg_association: Refreshing state... [id=/subscriptions/d3535dc1-cdc5-4932-abad-4cf8d2ad675a/resourceGroups/davidrgn/providers/Microsoft.Network/networkInterfaces/anic-ubuntu|/subscriptions/d3535dc1-cdc5-4932-abad-4cf8d2ad675a/resourceGroups/davidrgn/providers/Microsoft.Network/networkSecurityGroups/ansg-test]
+azurerm_virtual_network.avnet: Refreshing state... [id=/subscriptions/d3535dc1-cdc5-4932-abad-4cf8d2ad675a/resourceGroups/davidrgn/providers/Microsoft.Network/virtualNetworks/miAvnet]
+azurerm_public_ip.apublic_ip: Refreshing state... [id=/subscriptions/d3535dc1-cdc5-4932-abad-4cf8d2ad675a/resourceGroups/davidrgn/providers/Microsoft.Network/publicIPAddresses/miIPPublic]
+azurerm_network_security_group.ansg: Refreshing state... [id=/subscriptions/d3535dc1-cdc5-4932-abad-4cf8d2ad675a/resourceGroups/davidrgn/providers/Microsoft.Network/networkSecurityGroups/ansg-test]
+azurerm_kubernetes_cluster.aks: Refreshing state... [id=/subscriptions/d3535dc1-cdc5-4932-abad-4cf8d2ad675a/resourceGroups/davidrgn/providers/Microsoft.ContainerService/managedClusters/miAKS]
+azurerm_subnet.asubnet: Refreshing state... [id=/subscriptions/d3535dc1-cdc5-4932-abad-4cf8d2ad675a/resourceGroups/davidrgn/providers/Microsoft.Network/virtualNetworks/miAvnet/subnets/miAsubnet]
+azurerm_role_assignment.acr_owner: Refreshing state... [id=/subscriptions/d3535dc1-cdc5-4932-abad-4cf8d2ad675a/resourceGroups/davidrgn/providers/Microsoft.ContainerRegistry/registries/davidacr/providers/Microsoft.Authorization/roleAssignments/5ff50974-d038-71ab-970f-86353167dca0]
+azurerm_network_interface.anic: Refreshing state... [id=/subscriptions/d3535dc1-cdc5-4932-abad-4cf8d2ad675a/resourceGroups/davidrgn/providers/Microsoft.Network/networkInterfaces/anic-ubuntu]
+azurerm_linux_virtual_machine.avml: Refreshing state... [id=/subscriptions/d3535dc1-cdc5-4932-abad-4cf8d2ad675a/resourceGroups/davidrgn/providers/Microsoft.Compute/virtualMachines/avml-ubuntu]
+
+Note: Objects have changed outside of Terraform
+
+Terraform detected the following changes made outside of Terraform since the last "terraform apply" which may have affected this plan:
+
+  # azurerm_container_registry.acr has been deleted
+  - resource "azurerm_container_registry" "acr" {
+      - id                            = "/subscriptions/d3535dc1-cdc5-4932-abad-4cf8d2ad675a/resourceGroups/davidrgn/providers/Microsoft.ContainerRegistry/registries/davidacr" -> null
+        name                          = "davidacr"
+        # (18 unchanged attributes hidden)
+    }
+
+  # azurerm_kubernetes_cluster.aks has been deleted
+  - resource "azurerm_kubernetes_cluster" "aks" {
+        id                                  = "/subscriptions/d3535dc1-cdc5-4932-abad-4cf8d2ad675a/resourceGroups/davidrgn/providers/Microsoft.ContainerService/managedClusters/miAKS"
+        name                                = "miAKS"
+        # (31 unchanged attributes hidden)
+
+      - identity {
+          - principal_id = "5956641f-201c-4cb9-a661-a421aaf2db85" -> null
+            # (2 unchanged attributes hidden)
+        }
+
+        # (3 unchanged blocks hidden)
+    }
+
+  # azurerm_network_interface.anic has been deleted
+  - resource "azurerm_network_interface" "anic" {
+      - id                             = "/subscriptions/d3535dc1-cdc5-4932-abad-4cf8d2ad675a/resourceGroups/davidrgn/providers/Microsoft.Network/networkInterfaces/anic-ubuntu" -> null
+        name                           = "anic-ubuntu"
+        # (14 unchanged attributes hidden)
+
+        # (1 unchanged block hidden)
+    }
+
+  # azurerm_public_ip.apublic_ip has been deleted
+  - resource "azurerm_public_ip" "apublic_ip" {
+      - id                      = "/subscriptions/d3535dc1-cdc5-4932-abad-4cf8d2ad675a/resourceGroups/davidrgn/providers/Microsoft.Network/publicIPAddresses/miIPPublic" -> null
+      - ip_address              = "68.221.131.19" -> null
+        name                    = "miIPPublic"
+        tags                    = {
+            "environment" = "dev"
+        }
+        # (9 unchanged attributes hidden)
+    }
+
+  # azurerm_resource_group.arg has been deleted
+  - resource "azurerm_resource_group" "arg" {
+        id         = "/subscriptions/d3535dc1-cdc5-4932-abad-4cf8d2ad675a/resourceGroups/davidrgn"
+      - location   = "spaincentral" -> null
+      - name       = "davidrgn" -> null
+        # (1 unchanged attribute hidden)
+    }
+
+  # azurerm_subnet.asubnet has been deleted
+  - resource "azurerm_subnet" "asubnet" {
+      - id                                            = "/subscriptions/d3535dc1-cdc5-4932-abad-4cf8d2ad675a/resourceGroups/davidrgn/providers/Microsoft.Network/virtualNetworks/miAvnet/subnets/miAsubnet" -> null
+        name                                          = "miAsubnet"
+        # (6 unchanged attributes hidden)
+    }
+
+  # azurerm_virtual_network.avnet has been deleted
+  - resource "azurerm_virtual_network" "avnet" {
+        id                             = "/subscriptions/d3535dc1-cdc5-4932-abad-4cf8d2ad675a/resourceGroups/davidrgn/providers/Microsoft.Network/virtualNetworks/miAvnet"
+      - name                           = "miAvnet" -> null
+        # (10 unchanged attributes hidden)
+    }
+
+
+Unless you have made equivalent changes to your configuration, or ignored the relevant attributes using ignore_changes, the following plan may include actions to     
+undo or respond to these changes.
+
+───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── 
+
 Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the following symbols:
   + create
 
@@ -121,7 +206,7 @@ Terraform will perform the following actions:
       + vm_agent_platform_updates_enabled                      = false
 
       + admin_ssh_key {
-          + public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDCo8zxBGA2DQMo4CPKxu5b4DgvTpMc28hLQwiOWoGVag+iUcV+6/33dh1Cry7rvM8S2JPH88gOl2Nb7TpVDZtR/WNz9UsIb1n8vM8JpCB+yaI4q2+CTxqbmWjFFeWa5q0evg97VKnZI5kirdDem0y+Jgmm/+8zo2nb7YE6vTP9SU9Wzzkz9VBZHsG+7rnAvaw6/bzdG3A5O1Al1lTjyCJ3p3xTtvdxwcgLHpxhuV/7/VF2NHhV6WswbI7txi6F99dRMLjSmcY9g7fHI3qNWnlrRKctkWdH1/mQphhEzf+xnlwoLgNc9/toiT+3472NFeSSG/tdaNZUp16e/wHOEMKBJmeAvijpYkk/WFTxTh0i7RdPUc9rredutOU4DrMkxWl+fWAxHOosJonAF9IObBK+2e2aQ6AB/HX9j3lRH5qF1ig5+iUZB4oz1Krr3imVblHIVDzhLV8MT1T2gw+dblVJMH6diAUxwx9teeEiM0dMStY1IYWZXU+8dQttLMiremcAvW/Qs7nbfxt1S5NTraS+l2Zo09ssmVZVEbSXFjrweivgzLkqO76+2AbyeEGuq8azL0aDbnEJyKOySenUVYkpnoXcdQF0LPQSFHabtwH5qbsX+eKnsxlZZ/m6vydz6Kw2gUhLCSp0zyUy5GsK9+VXUB1ZpIlloU0nl9oXoqpAHw== david.ramon578@comunidadunir.net"
+          + public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCsVguYOG6nM6y/JzoJVS+ijwqsyWgbz5XdGo46A3jzUU86Z/stlpZpSczdORrX7ovyF/CZfV9Kw/EFN8hMotPOq7uEDMmyHOrTsP8gOCrejV5iuVeRfTe3h8A7m6N8co5A+XZjRBi6U+ohQ/SyO1vpNteJy660SSFC1MngM6mslzA9bqi0wKiZTg+YYTbLihyqene6lrM8MPBmYPl4Sp4cnGL/2a7EC/Cc+JJl+aJ87swyne6OK5mS3B/v4T875YHp1OmqM05e87SLzD2OjrXK9Moep7vGRWOQeg8qTfkvPFlPgVszOqBBCZbh5HUisDB3CNk3OYFrMXyZt4mGr0jq77FgevS6X1M/CL441uTeEaDahBZn7BfzMghACiIEOQynHWtt+xrkYWpz0/Pt5lUBTAtqT0GwY51WI81/EJW3nFmia0lrgXXSmD1pwqMe5MNIwGZnGU0grHyBKnghxAvhKOPlkDef2IKjqVuaRRJzAm+EKAYmf1GmhSLaV/JODATsI8DbLbU+qkF+4+a/ID2yy3TP/xczJO6HEyopdANymcHi8uUZKOBEpgM8giXIOzSR6GbHOqx97an/XABhdh8KYhTwy6Io6ZN99SUV768xeKGyMQLsGiY7c/cLmG1w0gUTrty37cxD/VgrYeglcx4SVxTJNhcferCcwfdPPxIKow=="
           + username   = "ubuntuadmin"
         }
 
@@ -135,9 +220,9 @@ Terraform will perform the following actions:
         }
 
       + source_image_reference {
-          + offer     = "UbuntuServer"
+          + offer     = "0001-com-ubuntu-server-jammy"
           + publisher = "Canonical"
-          + sku       = "18.04-LTS"
+          + sku       = "22_04-lts"
           + version   = "latest"
         }
 
@@ -171,13 +256,6 @@ Terraform will perform the following actions:
         }
     }
 
-  # azurerm_network_interface_security_group_association.nsg_association will be created
-  + resource "azurerm_network_interface_security_group_association" "nsg_association" {
-      + id                        = (known after apply)
-      + network_interface_id      = (known after apply)
-      + network_security_group_id = (known after apply)
-    }
-
   # azurerm_network_security_group.ansg will be created
   + resource "azurerm_network_security_group" "ansg" {
       + id                  = (known after apply)
@@ -195,6 +273,24 @@ Terraform will perform the following actions:
               + direction                                  = "Inbound"
               + name                                       = "AllowSSH"
               + priority                                   = 1000
+              + protocol                                   = "Tcp"
+              + source_address_prefix                      = "*"
+              + source_address_prefixes                    = []
+              + source_application_security_group_ids      = []
+              + source_port_range                          = "*"
+              + source_port_ranges                         = []
+                # (1 unchanged attribute hidden)
+            },
+          + {
+              + access                                     = "Allow"
+              + destination_address_prefix                 = "*"
+              + destination_address_prefixes               = []
+              + destination_application_security_group_ids = []
+              + destination_port_range                     = "80"
+              + destination_port_ranges                    = []
+              + direction                                  = "Inbound"
+              + name                                       = "AllowTCP"
+              + priority                                   = 1001
               + protocol                                   = "Tcp"
               + source_address_prefix                      = "*"
               + source_address_prefixes                    = []
@@ -274,12 +370,11 @@ Terraform will perform the following actions:
       + subnet                         = (known after apply)
     }
 
-Plan: 11 to add, 0 to change, 0 to destroy.
+Plan: 10 to add, 0 to change, 0 to destroy.
 
 Changes to Outputs:
-  + acr_name  = "davidacr"
-  + public_ip = (known after apply)
+  ~ public_ip = "68.221.131.19" -> (known after apply)
 
-─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── 
+───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── 
 
 Note: You didn't use the -out option to save this plan, so Terraform can't guarantee to take exactly these actions if you run "terraform apply" now.

@@ -1,0 +1,28 @@
+Ejecuto en el cmd => ansible-playbook -i inventory.ini imagen_redis_azure_vote_front_ACR_playbook.yml
+
+Copio toda la salida de mi consola a continuación:
+
+[WARNING]: Found variable using reserved name: namespace
+
+PLAY [Descargar y subir imagenes redis, azure_vote_front a mi Azure ACR] *********************************************************************************************
+
+TASK [Gathering Facts] ***********************************************************************************************************************************************
+ok: [68.221.196.2]
+
+TASK [Iniciar sesión en ACR] *****************************************************************************************************************************************
+changed: [68.221.196.2]
+
+TASK [Descargar imágenes desde Docker Hub] ***************************************************************************************************************************
+ok: [68.221.196.2] => (item={'name': 'docker.io/library/redis', 'tag': 'latest'})
+ok: [68.221.196.2] => (item={'name': 'docker.io/freelancer08/azure-vote-front', 'tag': 'latest'})
+
+TASK [Etiquetar imágenes descargadas para ACR] ***********************************************************************************************************************
+changed: [68.221.196.2] => (item={'name': 'redis'})
+changed: [68.221.196.2] => (item={'name': 'azure-vote-front'})
+
+TASK [Subir imágenes a ACR] ******************************************************************************************************************************************
+changed: [68.221.196.2] => (item={'name': 'redis'})
+changed: [68.221.196.2] => (item={'name': 'azure-vote-front'})
+
+PLAY RECAP ***********************************************************************************************************************************************************
+68.221.196.2               : ok=5    changed=3    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0

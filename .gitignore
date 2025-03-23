@@ -33,3 +33,7 @@ venv/
 
 # Ignorar ficheros de txt
 *.texto
+
+myenv
+.ssh
+{chang*

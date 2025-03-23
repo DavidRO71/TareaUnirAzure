@@ -4,8 +4,12 @@ Copio toda la salida de mi consola a continuación:
 
 Initializing the backend...
 Initializing provider plugins...
-- Reusing previous version of hashicorp/azurerm from the dependency lock file
-- Using previously-installed hashicorp/azurerm v4.21.1
+- Finding hashicorp/azurerm versions matching ">= 4.21.1"...
+- Installing hashicorp/azurerm v4.24.0...
+- Installed hashicorp/azurerm v4.24.0 (signed by HashiCorp)
+Terraform has made some changes to the provider dependency selections recorded
+in the .terraform.lock.hcl file. Review those changes and commit them to your
+version control system if they represent changes you intended to make.
 
 Terraform has been successfully initialized!
 

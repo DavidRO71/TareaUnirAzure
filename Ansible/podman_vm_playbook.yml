@@ -1,0 +1,60 @@
+---
+- name: Instalar Podman en Ubuntu (VM Azure)
+  hosts: miHost
+  become: true
+  tasks:
+    - name: Verificar conectividad a Internet
+      uri:
+        url: "https://www.google.com"
+        return_content: no
+      register: google_check
+      failed_when: google_check.status != 200
+
+    - name: Eliminar archivo de repositorio de Podman si existe
+      file:
+        path: /etc/apt/sources.list.d/packages_podman_io_debian_ubuntu_22_04.list
+        state: absent
+
+    - name: Actualizar los paquetes del sistema
+      apt:
+        update_cache: yes
+        upgrade: yes
+
+    - name: Instalar dependencias necesarias
+      apt:
+        name:
+          - curl
+          - gnupg2
+          - lsb-release
+          - software-properties-common
+          - apt-transport-https
+        state: present
+        update_cache: yes
+
+    - name: Crear archivo de repositorio de Podman para Ubuntu 22.04
+      copy:
+        content: |
+          deb [arch=amd64] https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/xUbuntu_22.04/ /
+        dest: "/etc/apt/sources.list.d/podman_ubuntu_22_04.list"
+        owner: root
+        group: root
+        mode: '0644'
+
+    - name: Agregar la clave GPG del repositorio
+      apt_key:
+        url: "https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/xUbuntu_22.04/Release.key"
+        state: present
+
+    - name: Instalar Podman
+      apt:
+        name: podman
+        state: present
+
+    - name: Verificar la instalación de Podman
+      command: podman --version
+      register: podman_version
+      changed_when: false
+
+    - name: Mostrar la versión de Podman instalada
+      debug:
+        msg: "La versión de Podman instalada es: {{ podman_version.stdout }}"

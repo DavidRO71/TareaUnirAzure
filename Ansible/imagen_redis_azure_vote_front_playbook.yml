@@ -1,0 +1,46 @@
+---
+- name: Redis, Nginx y Azure_Vote_Front
+  hosts: miHost
+  become: yes
+
+  vars_files:
+    - variables.yml
+
+  tasks:
+    - name: Iniciar sesión en ACR con Podman
+      containers.podman.podman_login:
+        registry: "{{ mi_usuario }}"
+        username: "{{ mi_acr }}"
+        password: "{{ mi_contrasenya }}"
+      register: podman_login
+      failed_when: podman_login.failed
+
+    - name: Descargar imágenes desde Docker Hub (repositorio público)
+      containers.podman.podman_image:
+        name: "{{ item.name }}"
+        tag: "{{ item.tag | default('latest') }}"
+        state: present
+        pull: yes
+      loop:
+        - { name: "docker.io/nginx", tag: "latest"}
+        - { name: "docker.io/library/redis", tag: "latest" }
+        - { name: "docker.io/freelancer08/azure-vote-front", tag: "latest" }
+
+    - name: Etiquetar imágenes descargadas para ACR
+      containers.podman.podman_tag:
+        image: "{{ item.name }}"
+        target_names: "{{ mi_usuario }}/{{ item.name }}:{{ tagged_image }}"
+      loop:
+        - { name: "nginx" }
+        - { name: "redis" }
+        - { name: "azure-vote-front" }
+
+    - name: Subir imágenes a ACR
+      containers.podman.podman_image:
+        name: "{{ mi_usuario }}/{{ item.name }}"
+        tag: "{{ tagged_image }}"
+        push: yes
+      loop:
+        - { name: "nginx" }
+        - { name: "redis" }
+        - { name: "azure-vote-front" }

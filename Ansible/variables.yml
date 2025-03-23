@@ -1,0 +1,16 @@
+# variables.yml
+mi_acr:  "davidacr"
+mi_usuario: "davidacr.azurecr.io"
+mi_contrasenya: "xIb5lpoWoZgZFoQ4xZWjc6feC2iuvm0ttaZlSWSSKi+ACRClXUEX"
+image_name: "nginx:latest"
+tagged_image: "casopractico2"
+img_redis_name: "redis"
+
+#Variables para el AKS
+aks_cluster_name: "miAKS"  # Nombre de tu clúster de AKS
+aks_resource_group: "davidrgn"  # Grupo de recursos en Azure donde está tu AKS
+acr_name: "davidacr"  # ==> mi_acr  Nombre de tu Azure Container Registry (sin el ".azurecr.io")
+redis_image_name: "redis"  # ==> img_redis_name Nombre de la imagen de Redis en tu ACR
+redis_version: "latest"  # Versión de la imagen de Redis a usar
+namespace: "default"  # Namespace donde se va a desplegar Redis en AKS
+dns_prefix: "myaks"
