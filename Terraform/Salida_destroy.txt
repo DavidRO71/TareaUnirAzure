@@ -2,17 +2,16 @@ Ejecuto en el cmd => terraform destroy
 
 Copio toda la salida de mi consola a continuación:
 
-azurerm_container_registry.acr: Refreshing state... [id=/subscriptions/d3535dc1-cdc5-4932-abad-4cf8d2ad675a/resourceGroups/davidrgn/providers/Microsoft.ContainerRegistry/registries/davidacr]
 azurerm_resource_group.arg: Refreshing state... [id=/subscriptions/d3535dc1-cdc5-4932-abad-4cf8d2ad675a/resourceGroups/davidrgn]
+azurerm_container_registry.acr: Refreshing state... [id=/subscriptions/d3535dc1-cdc5-4932-abad-4cf8d2ad675a/resourceGroups/davidrgn/providers/Microsoft.ContainerRegistry/registries/davidacr]
 azurerm_virtual_network.avnet: Refreshing state... [id=/subscriptions/d3535dc1-cdc5-4932-abad-4cf8d2ad675a/resourceGroups/davidrgn/providers/Microsoft.Network/virtualNetworks/miAvnet]
 azurerm_public_ip.apublic_ip: Refreshing state... [id=/subscriptions/d3535dc1-cdc5-4932-abad-4cf8d2ad675a/resourceGroups/davidrgn/providers/Microsoft.Network/publicIPAddresses/miIPPublic]
 azurerm_network_security_group.ansg: Refreshing state... [id=/subscriptions/d3535dc1-cdc5-4932-abad-4cf8d2ad675a/resourceGroups/davidrgn/providers/Microsoft.Network/networkSecurityGroups/ansg-test]
 azurerm_kubernetes_cluster.aks: Refreshing state... [id=/subscriptions/d3535dc1-cdc5-4932-abad-4cf8d2ad675a/resourceGroups/davidrgn/providers/Microsoft.ContainerService/managedClusters/miAKS]
 azurerm_subnet.asubnet: Refreshing state... [id=/subscriptions/d3535dc1-cdc5-4932-abad-4cf8d2ad675a/resourceGroups/davidrgn/providers/Microsoft.Network/virtualNetworks/miAvnet/subnets/miAsubnet]
 azurerm_network_interface.anic: Refreshing state... [id=/subscriptions/d3535dc1-cdc5-4932-abad-4cf8d2ad675a/resourceGroups/davidrgn/providers/Microsoft.Network/networkInterfaces/anic-ubuntu]
-azurerm_network_interface_security_group_association.nsg_association: Refreshing state... [id=/subscriptions/d3535dc1-cdc5-4932-abad-4cf8d2ad675a/resourceGroups/davidrgn/providers/Microsoft.Network/networkInterfaces/anic-ubuntu|/subscriptions/d3535dc1-cdc5-4932-abad-4cf8d2ad675a/resourceGroups/davidrgn/providers/Microsoft.Network/networkSecurityGroups/ansg-test]
 azurerm_linux_virtual_machine.avml: Refreshing state... [id=/subscriptions/d3535dc1-cdc5-4932-abad-4cf8d2ad675a/resourceGroups/davidrgn/providers/Microsoft.Compute/virtualMachines/avml-ubuntu]
-azurerm_role_assignment.acr_owner: Refreshing state... [id=/subscriptions/d3535dc1-cdc5-4932-abad-4cf8d2ad675a/resourceGroups/davidrgn/providers/Microsoft.ContainerRegistry/registries/davidacr/providers/Microsoft.Authorization/roleAssignments/9c1e3257-0e13-92ea-3b4c-ee456d3c9893]
+azurerm_role_assignment.acr_owner: Refreshing state... [id=/subscriptions/d3535dc1-cdc5-4932-abad-4cf8d2ad675a/resourceGroups/davidrgn/providers/Microsoft.ContainerRegistry/registries/davidacr/providers/Microsoft.Authorization/roleAssignments/a3264779-6b9b-5999-8709-fe62150ca211]
 
 Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the following symbols:
   - destroy
@@ -49,7 +48,7 @@ Terraform will perform the following actions:
       - cost_analysis_enabled               = false -> null
       - current_kubernetes_version          = "1.30.9" -> null
       - dns_prefix                          = "myaks" -> null
-      - fqdn                                = "myaks-ncuhitba.hcp.spaincentral.azmk8s.io" -> null
+      - fqdn                                = "myaks-u10tt4k7.hcp.spaincentral.azmk8s.io" -> null
       - id                                  = "/subscriptions/d3535dc1-cdc5-4932-abad-4cf8d2ad675a/resourceGroups/davidrgn/providers/Microsoft.ContainerService/managedClusters/miAKS" -> null
       - kube_admin_config                   = (sensitive value) -> null
       - kube_config                         = (sensitive value) -> null
@@ -62,7 +61,7 @@ Terraform will perform the following actions:
       - node_resource_group                 = "MC_davidrgn_miAKS_spaincentral" -> null
       - node_resource_group_id              = "/subscriptions/d3535dc1-cdc5-4932-abad-4cf8d2ad675a/resourceGroups/MC_davidrgn_miAKS_spaincentral" -> null
       - oidc_issuer_enabled                 = false -> null
-      - portal_fqdn                         = "myaks-ncuhitba.portal.hcp.spaincentral.azmk8s.io" -> null
+      - portal_fqdn                         = "myaks-u10tt4k7.portal.hcp.spaincentral.azmk8s.io" -> null
       - private_cluster_enabled             = false -> null
       - private_cluster_public_fqdn_enabled = false -> null
       - resource_group_name                 = "davidrgn" -> null
@@ -108,14 +107,14 @@ Terraform will perform the following actions:
 
       - identity {
           - identity_ids = [] -> null
-          - principal_id = "d78d43f0-536f-493b-ad57-d0601f949a91" -> null
+          - principal_id = "dde87aa6-caa6-4946-a970-e270dbfe3459" -> null
           - tenant_id    = "899789dc-202f-44b4-8472-a6d40f9eb440" -> null
           - type         = "SystemAssigned" -> null
         }
 
       - kubelet_identity {
-          - client_id                 = "96aca104-041c-4bac-a7f8-292a8dc3b154" -> null
-          - object_id                 = "5e2b9ed1-a5f9-41ba-b685-968bba3eec59" -> null
+          - client_id                 = "a4f177f8-58bf-4f01-acde-3a39fd5b8932" -> null
+          - object_id                 = "06499241-3633-4b89-9df2-a169ac4c1590" -> null
           - user_assigned_identity_id = "/subscriptions/d3535dc1-cdc5-4932-abad-4cf8d2ad675a/resourceGroups/MC_davidrgn_miAKS_spaincentral/providers/Microsoft.ManagedIdentity/userAssignedIdentities/miAKS-agentpool" -> null
         }
 
@@ -142,7 +141,7 @@ Terraform will perform the following actions:
           - load_balancer_profile {
               - backend_pool_type           = "NodeIPConfiguration" -> null
               - effective_outbound_ips      = [
-                  - "/subscriptions/d3535dc1-cdc5-4932-abad-4cf8d2ad675a/resourceGroups/MC_davidrgn_miAKS_spaincentral/providers/Microsoft.Network/publicIPAddresses/ffb6c1e9-f0cc-44fe-a976-78de5b337942",
+                  - "/subscriptions/d3535dc1-cdc5-4932-abad-4cf8d2ad675a/resourceGroups/MC_davidrgn_miAKS_spaincentral/providers/Microsoft.Network/publicIPAddresses/fb0dff37-573a-47ab-a068-1bc5a8f2c4a1",
                 ] -> null
               - idle_timeout_in_minutes     = 0 -> null
               - managed_outbound_ip_count   = 1 -> null
@@ -179,9 +178,9 @@ Terraform will perform the following actions:
           - "10.0.1.4",
         ] -> null
       - provision_vm_agent                                     = true -> null
-      - public_ip_address                                      = "68.221.132.111" -> null
+      - public_ip_address                                      = "68.221.196.2" -> null
       - public_ip_addresses                                    = [
-          - "68.221.132.111",
+          - "68.221.196.2",
         ] -> null
       - resource_group_name                                    = "davidrgn" -> null
       - secure_boot_enabled                                    = false -> null
@@ -189,30 +188,30 @@ Terraform will perform the following actions:
       - tags                                                   = {
           - "environment" = "dev"
         } -> null
-      - virtual_machine_id                                     = "3c746222-8ee8-421a-8692-039a03658b1f" -> null
+      - virtual_machine_id                                     = "23b12f1c-dd81-4f0c-80d0-41ffcde2474d" -> null
       - vm_agent_platform_updates_enabled                      = false -> null
       - vtpm_enabled                                           = false -> null
         # (14 unchanged attributes hidden)
 
       - admin_ssh_key {
-          - public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDCo8zxBGA2DQMo4CPKxu5b4DgvTpMc28hLQwiOWoGVag+iUcV+6/33dh1Cry7rvM8S2JPH88gOl2Nb7TpVDZtR/WNz9UsIb1n8vM8JpCB+yaI4q2+CTxqbmWjFFeWa5q0evg97VKnZI5kirdDem0y+Jgmm/+8zo2nb7YE6vTP9SU9Wzzkz9VBZHsG+7rnAvaw6/bzdG3A5O1Al1lTjyCJ3p3xTtvdxwcgLHpxhuV/7/VF2NHhV6WswbI7txi6F99dRMLjSmcY9g7fHI3qNWnlrRKctkWdH1/mQphhEzf+xnlwoLgNc9/toiT+3472NFeSSG/tdaNZUp16e/wHOEMKBJmeAvijpYkk/WFTxTh0i7RdPUc9rredutOU4DrMkxWl+fWAxHOosJonAF9IObBK+2e2aQ6AB/HX9j3lRH5qF1ig5+iUZB4oz1Krr3imVblHIVDzhLV8MT1T2gw+dblVJMH6diAUxwx9teeEiM0dMStY1IYWZXU+8dQttLMiremcAvW/Qs7nbfxt1S5NTraS+l2Zo09ssmVZVEbSXFjrweivgzLkqO76+2AbyeEGuq8azL0aDbnEJyKOySenUVYkpnoXcdQF0LPQSFHabtwH5qbsX+eKnsxlZZ/m6vydz6Kw2gUhLCSp0zyUy5GsK9+VXUB1ZpIlloU0nl9oXoqpAHw== david.ramon578@comunidadunir.net" -> null
+          - public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCsVguYOG6nM6y/JzoJVS+ijwqsyWgbz5XdGo46A3jzUU86Z/stlpZpSczdORrX7ovyF/CZfV9Kw/EFN8hMotPOq7uEDMmyHOrTsP8gOCrejV5iuVeRfTe3h8A7m6N8co5A+XZjRBi6U+ohQ/SyO1vpNteJy660SSFC1MngM6mslzA9bqi0wKiZTg+YYTbLihyqene6lrM8MPBmYPl4Sp4cnGL/2a7EC/Cc+JJl+aJ87swyne6OK5mS3B/v4T875YHp1OmqM05e87SLzD2OjrXK9Moep7vGRWOQeg8qTfkvPFlPgVszOqBBCZbh5HUisDB3CNk3OYFrMXyZt4mGr0jq77FgevS6X1M/CL441uTeEaDahBZn7BfzMghACiIEOQynHWtt+xrkYWpz0/Pt5lUBTAtqT0GwY51WI81/EJW3nFmia0lrgXXSmD1pwqMe5MNIwGZnGU0grHyBKnghxAvhKOPlkDef2IKjqVuaRRJzAm+EKAYmf1GmhSLaV/JODATsI8DbLbU+qkF+4+a/ID2yy3TP/xczJO6HEyopdANymcHi8uUZKOBEpgM8giXIOzSR6GbHOqx97an/XABhdh8KYhTwy6Io6ZN99SUV768xeKGyMQLsGiY7c/cLmG1w0gUTrty37cxD/VgrYeglcx4SVxTJNhcferCcwfdPPxIKow==" -> null
           - username   = "ubuntuadmin" -> null
         }
 
       - os_disk {
           - caching                          = "ReadWrite" -> null
           - disk_size_gb                     = 30 -> null
-          - id                               = "/subscriptions/d3535dc1-cdc5-4932-abad-4cf8d2ad675a/resourceGroups/davidrgn/providers/Microsoft.Compute/disks/avml-ubuntu_OsDisk_1_b6c72d69fee04ad99ae2fef9c26d9f90" -> null
-          - name                             = "avml-ubuntu_OsDisk_1_b6c72d69fee04ad99ae2fef9c26d9f90" -> null
+          - id                               = "/subscriptions/d3535dc1-cdc5-4932-abad-4cf8d2ad675a/resourceGroups/davidrgn/providers/Microsoft.Compute/disks/avml-ubuntu_OsDisk_1_75de2e6fcc61408f9dba65132f49a7f7" -> null
+          - name                             = "avml-ubuntu_OsDisk_1_75de2e6fcc61408f9dba65132f49a7f7" -> null
           - storage_account_type             = "Standard_LRS" -> null
           - write_accelerator_enabled        = false -> null
             # (3 unchanged attributes hidden)
         }
 
       - source_image_reference {
-          - offer     = "UbuntuServer" -> null
+          - offer     = "0001-com-ubuntu-server-jammy" -> null
           - publisher = "Canonical" -> null
-          - sku       = "18.04-LTS" -> null
+          - sku       = "22_04-lts" -> null
           - version   = "latest" -> null
         }
     }
@@ -223,10 +222,10 @@ Terraform will perform the following actions:
       - applied_dns_servers            = [] -> null
       - dns_servers                    = [] -> null
       - id                             = "/subscriptions/d3535dc1-cdc5-4932-abad-4cf8d2ad675a/resourceGroups/davidrgn/providers/Microsoft.Network/networkInterfaces/anic-ubuntu" -> null
-      - internal_domain_name_suffix    = "0uxxwht54kkuno1djwec1qkfff.madx.internal.cloudapp.net" -> null
+      - internal_domain_name_suffix    = "kx4i4wbdyv3uxk41vrxt1e3h3a.madx.internal.cloudapp.net" -> null
       - ip_forwarding_enabled          = false -> null
       - location                       = "spaincentral" -> null
-      - mac_address                    = "60-45-BD-FC-E4-E6" -> null
+      - mac_address                    = "7C-ED-8D-16-95-B9" -> null
       - name                           = "anic-ubuntu" -> null
       - private_ip_address             = "10.0.1.4" -> null
       - private_ip_addresses           = [
@@ -249,16 +248,9 @@ Terraform will perform the following actions:
         }
     }
 
-  # azurerm_network_interface_security_group_association.nsg_association will be destroyed
-  - resource "azurerm_network_interface_security_group_association" "nsg_association" {
-      - id                        = "/subscriptions/d3535dc1-cdc5-4932-abad-4cf8d2ad675a/resourceGroups/davidrgn/providers/Microsoft.Network/networkInterfaces/anic-ubuntu|/subscriptions/d3535dc1-cdc5-4932-abad-4cf8d2ad675a/resourceGroups/davidrgn/providers/Microsoft.Network/networkSecurityGroups/ansg-test" -> null
-      - network_interface_id      = "/subscriptions/d3535dc1-cdc5-4932-abad-4cf8d2ad675a/resourceGroups/davidrgn/providers/Microsoft.Network/networkInterfaces/anic-ubuntu" -> null  
-      - network_security_group_id = "/subscriptions/d3535dc1-cdc5-4932-abad-4cf8d2ad675a/resourceGroups/davidrgn/providers/Microsoft.Network/networkSecurityGroups/ansg-test" -> null
-    }
-
   # azurerm_network_security_group.ansg will be destroyed
   - resource "azurerm_network_security_group" "ansg" {
-      - id                  = "/subscriptions/d3535dc1-cdc5-4932-abad-4cf8d2ad675a/resourceGroups/davidrgn/providers/Microsoft.Network/networkSecurityGroups/ansg-test" -> null      
+      - id                  = "/subscriptions/d3535dc1-cdc5-4932-abad-4cf8d2ad675a/resourceGroups/davidrgn/providers/Microsoft.Network/networkSecurityGroups/ansg-test" -> null
       - location            = "spaincentral" -> null
       - name                = "ansg-test" -> null
       - resource_group_name = "davidrgn" -> null
@@ -281,6 +273,24 @@ Terraform will perform the following actions:
               - source_port_ranges                         = []
                 # (1 unchanged attribute hidden)
             },
+          - {
+              - access                                     = "Allow"
+              - destination_address_prefix                 = "*"
+              - destination_address_prefixes               = []
+              - destination_application_security_group_ids = []
+              - destination_port_range                     = "80"
+              - destination_port_ranges                    = []
+              - direction                                  = "Inbound"
+              - name                                       = "AllowTCP"
+              - priority                                   = 1001
+              - protocol                                   = "Tcp"
+              - source_address_prefix                      = "*"
+              - source_address_prefixes                    = []
+              - source_application_security_group_ids      = []
+              - source_port_range                          = "*"
+              - source_port_ranges                         = []
+                # (1 unchanged attribute hidden)
+            },
         ] -> null
       - tags                = {} -> null
     }
@@ -289,9 +299,9 @@ Terraform will perform the following actions:
   - resource "azurerm_public_ip" "apublic_ip" {
       - allocation_method       = "Static" -> null
       - ddos_protection_mode    = "VirtualNetworkInherited" -> null
-      - id                      = "/subscriptions/d3535dc1-cdc5-4932-abad-4cf8d2ad675a/resourceGroups/davidrgn/providers/Microsoft.Network/publicIPAddresses/miIPPublic" -> null     
+      - id                      = "/subscriptions/d3535dc1-cdc5-4932-abad-4cf8d2ad675a/resourceGroups/davidrgn/providers/Microsoft.Network/publicIPAddresses/miIPPublic" -> null
       - idle_timeout_in_minutes = 4 -> null
-      - ip_address              = "68.221.132.111" -> null
+      - ip_address              = "68.221.196.2" -> null
       - ip_tags                 = {} -> null
       - ip_version              = "IPv4" -> null
       - location                = "spaincentral" -> null
@@ -317,9 +327,9 @@ Terraform will perform the following actions:
 
   # azurerm_role_assignment.acr_owner will be destroyed
   - resource "azurerm_role_assignment" "acr_owner" {
-      - id                                     = "/subscriptions/d3535dc1-cdc5-4932-abad-4cf8d2ad675a/resourceGroups/davidrgn/providers/Microsoft.ContainerRegistry/registries/davidacr/providers/Microsoft.Authorization/roleAssignments/9c1e3257-0e13-92ea-3b4c-ee456d3c9893" -> null
-      - name                                   = "9c1e3257-0e13-92ea-3b4c-ee456d3c9893" -> null
-      - principal_id                           = "d78d43f0-536f-493b-ad57-d0601f949a91" -> null
+      - id                                     = "/subscriptions/d3535dc1-cdc5-4932-abad-4cf8d2ad675a/resourceGroups/davidrgn/providers/Microsoft.ContainerRegistry/registries/davidacr/providers/Microsoft.Authorization/roleAssignments/a3264779-6b9b-5999-8709-fe62150ca211" -> null
+      - name                                   = "a3264779-6b9b-5999-8709-fe62150ca211" -> null
+      - principal_id                           = "dde87aa6-caa6-4946-a970-e270dbfe3459" -> null
       - principal_type                         = "ServicePrincipal" -> null
       - role_definition_id                     = "/subscriptions/d3535dc1-cdc5-4932-abad-4cf8d2ad675a/providers/Microsoft.Authorization/roleDefinitions/8e3af657-a8ff-443c-a75c-2fe8c4bcb635" -> null
       - role_definition_name                   = "Owner" -> null
@@ -350,8 +360,8 @@ Terraform will perform the following actions:
         ] -> null
       - dns_servers                    = [] -> null
       - flow_timeout_in_minutes        = 0 -> null
-      - guid                           = "1e7b2fd5-f27f-4695-bb63-4d882dc1452d" -> null
-      - id                             = "/subscriptions/d3535dc1-cdc5-4932-abad-4cf8d2ad675a/resourceGroups/davidrgn/providers/Microsoft.Network/virtualNetworks/miAvnet" -> null   
+      - guid                           = "588ffc55-c523-4b7b-abdb-ac6f3d93a7e8" -> null
+      - id                             = "/subscriptions/d3535dc1-cdc5-4932-abad-4cf8d2ad675a/resourceGroups/davidrgn/providers/Microsoft.Network/virtualNetworks/miAvnet" -> null
       - location                       = "spaincentral" -> null
       - name                           = "miAvnet" -> null
       - private_endpoint_vnet_policies = "Disabled" -> null
@@ -376,11 +386,12 @@ Terraform will perform the following actions:
         # (2 unchanged attributes hidden)
     }
 
-Plan: 0 to add, 0 to change, 11 to destroy.
+Plan: 0 to add, 0 to change, 10 to destroy.
 
 Changes to Outputs:
   - acr_name  = "davidacr" -> null
-  - public_ip = "68.221.132.111" -> null
+  - aks_name  = "miAKS" -> null
+  - public_ip = "68.221.196.2" -> null
 
 Do you really want to destroy all resources?
   Terraform will destroy all your managed infrastructure, as shown above.
@@ -388,42 +399,43 @@ Do you really want to destroy all resources?
 
   Enter a value: yes
 
-azurerm_network_interface_security_group_association.nsg_association: Destroying... [id=/subscriptions/d3535dc1-cdc5-4932-abad-4cf8d2ad675a/resourceGroups/davidrgn/providers/Microsoft.Network/networkInterfaces/anic-ubuntu|/subscriptions/d3535dc1-cdc5-4932-abad-4cf8d2ad675a/resourceGroups/davidrgn/providers/Microsoft.Network/networkSecurityGroups/ansg-test]    
-azurerm_role_assignment.acr_owner: Destroying... [id=/subscriptions/d3535dc1-cdc5-4932-abad-4cf8d2ad675a/resourceGroups/davidrgn/providers/Microsoft.ContainerRegistry/registries/davidacr/providers/Microsoft.Authorization/roleAssignments/9c1e3257-0e13-92ea-3b4c-ee456d3c9893]
+azurerm_role_assignment.acr_owner: Destroying... [id=/subscriptions/d3535dc1-cdc5-4932-abad-4cf8d2ad675a/resourceGroups/davidrgn/providers/Microsoft.ContainerRegistry/registries/davidacr/providers/Microsoft.Authorization/roleAssignments/a3264779-6b9b-5999-8709-fe62150ca211]
+azurerm_network_security_group.ansg: Destroying... [id=/subscriptions/d3535dc1-cdc5-4932-abad-4cf8d2ad675a/resourceGroups/davidrgn/providers/Microsoft.Network/networkSecurityGroups/ansg-test]
 azurerm_linux_virtual_machine.avml: Destroying... [id=/subscriptions/d3535dc1-cdc5-4932-abad-4cf8d2ad675a/resourceGroups/davidrgn/providers/Microsoft.Compute/virtualMachines/avml-ubuntu]
 azurerm_role_assignment.acr_owner: Destruction complete after 1s
 azurerm_container_registry.acr: Destroying... [id=/subscriptions/d3535dc1-cdc5-4932-abad-4cf8d2ad675a/resourceGroups/davidrgn/providers/Microsoft.ContainerRegistry/registries/davidacr]
 azurerm_kubernetes_cluster.aks: Destroying... [id=/subscriptions/d3535dc1-cdc5-4932-abad-4cf8d2ad675a/resourceGroups/davidrgn/providers/Microsoft.ContainerService/managedClusters/miAKS]
-azurerm_network_interface_security_group_association.nsg_association: Destruction complete after 7s
-azurerm_network_security_group.ansg: Destroying... [id=/subscriptions/d3535dc1-cdc5-4932-abad-4cf8d2ad675a/resourceGroups/davidrgn/providers/Microsoft.Network/networkSecurityGroups/ansg-test]
+azurerm_network_security_group.ansg: Still destroying... [id=/subscriptions/d3535dc1-cdc5-4932-abad-...etwork/networkSecurityGroups/ansg-test, 10s elapsed]
 azurerm_linux_virtual_machine.avml: Still destroying... [id=/subscriptions/d3535dc1-cdc5-4932-abad-...ft.Compute/virtualMachines/avml-ubuntu, 10s elapsed]
 azurerm_container_registry.acr: Still destroying... [id=/subscriptions/d3535dc1-cdc5-4932-abad-....ContainerRegistry/registries/davidacr, 10s elapsed]
 azurerm_kubernetes_cluster.aks: Still destroying... [id=/subscriptions/d3535dc1-cdc5-4932-abad-...ContainerService/managedClusters/miAKS, 10s elapsed]
-azurerm_network_security_group.ansg: Still destroying... [id=/subscriptions/d3535dc1-cdc5-4932-abad-...etwork/networkSecurityGroups/ansg-test, 10s elapsed]
-azurerm_network_security_group.ansg: Destruction complete after 12s
+azurerm_network_security_group.ansg: Destruction complete after 13s
 azurerm_container_registry.acr: Destruction complete after 18s
 azurerm_linux_virtual_machine.avml: Still destroying... [id=/subscriptions/d3535dc1-cdc5-4932-abad-...ft.Compute/virtualMachines/avml-ubuntu, 20s elapsed]
 azurerm_kubernetes_cluster.aks: Still destroying... [id=/subscriptions/d3535dc1-cdc5-4932-abad-...ContainerService/managedClusters/miAKS, 20s elapsed]
 azurerm_linux_virtual_machine.avml: Still destroying... [id=/subscriptions/d3535dc1-cdc5-4932-abad-...ft.Compute/virtualMachines/avml-ubuntu, 30s elapsed]
 azurerm_kubernetes_cluster.aks: Still destroying... [id=/subscriptions/d3535dc1-cdc5-4932-abad-...ContainerService/managedClusters/miAKS, 30s elapsed]
-azurerm_linux_virtual_machine.avml: Destruction complete after 39s
-azurerm_network_interface.anic: Destroying... [id=/subscriptions/d3535dc1-cdc5-4932-abad-4cf8d2ad675a/resourceGroups/davidrgn/providers/Microsoft.Network/networkInterfaces/anic-ubuntu]
+azurerm_linux_virtual_machine.avml: Still destroying... [id=/subscriptions/d3535dc1-cdc5-4932-abad-...ft.Compute/virtualMachines/avml-ubuntu, 40s elapsed]
 azurerm_kubernetes_cluster.aks: Still destroying... [id=/subscriptions/d3535dc1-cdc5-4932-abad-...ContainerService/managedClusters/miAKS, 40s elapsed]
-azurerm_network_interface.anic: Still destroying... [id=/subscriptions/d3535dc1-cdc5-4932-abad-....Network/networkInterfaces/anic-ubuntu, 10s elapsed]
+azurerm_linux_virtual_machine.avml: Still destroying... [id=/subscriptions/d3535dc1-cdc5-4932-abad-...ft.Compute/virtualMachines/avml-ubuntu, 50s elapsed]
+azurerm_linux_virtual_machine.avml: Destruction complete after 51s
+azurerm_network_interface.anic: Destroying... [id=/subscriptions/d3535dc1-cdc5-4932-abad-4cf8d2ad675a/resourceGroups/davidrgn/providers/Microsoft.Network/networkInterfaces/anic-ubuntu]
 azurerm_kubernetes_cluster.aks: Still destroying... [id=/subscriptions/d3535dc1-cdc5-4932-abad-...ContainerService/managedClusters/miAKS, 50s elapsed]
-azurerm_network_interface.anic: Destruction complete after 12s
+azurerm_network_interface.anic: Still destroying... [id=/subscriptions/d3535dc1-cdc5-4932-abad-....Network/networkInterfaces/anic-ubuntu, 10s elapsed]
+azurerm_kubernetes_cluster.aks: Still destroying... [id=/subscriptions/d3535dc1-cdc5-4932-abad-...ContainerService/managedClusters/miAKS, 1m0s elapsed]
+azurerm_network_interface.anic: Destruction complete after 11s
 azurerm_subnet.asubnet: Destroying... [id=/subscriptions/d3535dc1-cdc5-4932-abad-4cf8d2ad675a/resourceGroups/davidrgn/providers/Microsoft.Network/virtualNetworks/miAvnet/subnets/miAsubnet]
 azurerm_public_ip.apublic_ip: Destroying... [id=/subscriptions/d3535dc1-cdc5-4932-abad-4cf8d2ad675a/resourceGroups/davidrgn/providers/Microsoft.Network/publicIPAddresses/miIPPublic]
-azurerm_kubernetes_cluster.aks: Still destroying... [id=/subscriptions/d3535dc1-cdc5-4932-abad-...ContainerService/managedClusters/miAKS, 1m0s elapsed]
-azurerm_public_ip.apublic_ip: Still destroying... [id=/subscriptions/d3535dc1-cdc5-4932-abad-...t.Network/publicIPAddresses/miIPPublic, 10s elapsed]
+azurerm_kubernetes_cluster.aks: Still destroying... [id=/subscriptions/d3535dc1-cdc5-4932-abad-...ContainerService/managedClusters/miAKS, 1m10s elapsed]
 azurerm_subnet.asubnet: Still destroying... [id=/subscriptions/d3535dc1-cdc5-4932-abad-...tualNetworks/miAvnet/subnets/miAsubnet, 10s elapsed]
-azurerm_public_ip.apublic_ip: Destruction complete after 11s
+azurerm_public_ip.apublic_ip: Still destroying... [id=/subscriptions/d3535dc1-cdc5-4932-abad-...t.Network/publicIPAddresses/miIPPublic, 10s elapsed]
 azurerm_subnet.asubnet: Destruction complete after 12s
 azurerm_virtual_network.avnet: Destroying... [id=/subscriptions/d3535dc1-cdc5-4932-abad-4cf8d2ad675a/resourceGroups/davidrgn/providers/Microsoft.Network/virtualNetworks/miAvnet]
-azurerm_kubernetes_cluster.aks: Still destroying... [id=/subscriptions/d3535dc1-cdc5-4932-abad-...ContainerService/managedClusters/miAKS, 1m10s elapsed]
-azurerm_virtual_network.avnet: Still destroying... [id=/subscriptions/d3535dc1-cdc5-4932-abad-...rosoft.Network/virtualNetworks/miAvnet, 10s elapsed]
-azurerm_virtual_network.avnet: Destruction complete after 11s
 azurerm_kubernetes_cluster.aks: Still destroying... [id=/subscriptions/d3535dc1-cdc5-4932-abad-...ContainerService/managedClusters/miAKS, 1m20s elapsed]
+azurerm_public_ip.apublic_ip: Still destroying... [id=/subscriptions/d3535dc1-cdc5-4932-abad-...t.Network/publicIPAddresses/miIPPublic, 20s elapsed]
+azurerm_virtual_network.avnet: Still destroying... [id=/subscriptions/d3535dc1-cdc5-4932-abad-...rosoft.Network/virtualNetworks/miAvnet, 10s elapsed]
+azurerm_public_ip.apublic_ip: Destruction complete after 22s
+azurerm_virtual_network.avnet: Destruction complete after 11s
 azurerm_kubernetes_cluster.aks: Still destroying... [id=/subscriptions/d3535dc1-cdc5-4932-abad-...ContainerService/managedClusters/miAKS, 1m30s elapsed]
 azurerm_kubernetes_cluster.aks: Still destroying... [id=/subscriptions/d3535dc1-cdc5-4932-abad-...ContainerService/managedClusters/miAKS, 1m40s elapsed]
 azurerm_kubernetes_cluster.aks: Still destroying... [id=/subscriptions/d3535dc1-cdc5-4932-abad-...ContainerService/managedClusters/miAKS, 1m50s elapsed]
@@ -437,10 +449,9 @@ azurerm_kubernetes_cluster.aks: Still destroying... [id=/subscriptions/d3535dc1-
 azurerm_kubernetes_cluster.aks: Still destroying... [id=/subscriptions/d3535dc1-cdc5-4932-abad-...ContainerService/managedClusters/miAKS, 3m10s elapsed]
 azurerm_kubernetes_cluster.aks: Still destroying... [id=/subscriptions/d3535dc1-cdc5-4932-abad-...ContainerService/managedClusters/miAKS, 3m20s elapsed]
 azurerm_kubernetes_cluster.aks: Still destroying... [id=/subscriptions/d3535dc1-cdc5-4932-abad-...ContainerService/managedClusters/miAKS, 3m30s elapsed]
-azurerm_kubernetes_cluster.aks: Still destroying... [id=/subscriptions/d3535dc1-cdc5-4932-abad-...ContainerService/managedClusters/miAKS, 3m40s elapsed]
-azurerm_kubernetes_cluster.aks: Destruction complete after 3m40s
+azurerm_kubernetes_cluster.aks: Destruction complete after 3m39s
 azurerm_resource_group.arg: Destroying... [id=/subscriptions/d3535dc1-cdc5-4932-abad-4cf8d2ad675a/resourceGroups/davidrgn]
 azurerm_resource_group.arg: Still destroying... [id=/subscriptions/d3535dc1-cdc5-4932-abad-4cf8d2ad675a/resourceGroups/davidrgn, 10s elapsed]
-azurerm_resource_group.arg: Destruction complete after 18s
+azurerm_resource_group.arg: Destruction complete after 16s
 
-Destroy complete! Resources: 11 destroyed.
+Destroy complete! Resources: 10 destroyed.
